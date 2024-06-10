@@ -1,0 +1,4 @@
+com\tisquare\rabbitmq\consumer\ConsumerConfig.class
+com\tisquare\rabbitmq\consumer\LogMessage.class
+com\tisquare\rabbitmq\consumer\ConsumerService.class
+com\tisquare\rabbitmq\consumer\ConsumerApplication.class

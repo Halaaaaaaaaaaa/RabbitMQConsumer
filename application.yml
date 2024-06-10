@@ -1,0 +1,22 @@
+spring:
+  rabbitmq:
+    host: 52.79.63.89
+    port: 5672
+    username: guest
+    password: guest
+    exchange:
+      name: rabbitExchange
+    queue:
+      name: rabbitQueue
+    routing:
+      name: log.*
+
+logging:
+  level:
+    root: debug
+  config: file:/home/heysh/rabbitmq/CONSUMER/config/logback-spring.xml
+  file:
+    path: /home/heysh/rabbitmq/CONSUMER/log
+
+
+
