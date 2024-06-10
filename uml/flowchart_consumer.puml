@@ -105,22 +105,41 @@
 '@enduml
 
 
+/'loop 작성 버전'/
+'@startuml
+'start
+'repeat :Queue에서 메시지 수신;
+'    if (@RabbitListener 수신) then (yes)
+'        :@RabbitListener를 통해 메시지 수신;
+'        if (로그 저장) then (yes)
+'            :LogT.log 파일에 로그 저장;
+'        else (no)
+'            :로컬 저장소에 로그 저장;
+'        endif
+'    else (no)
+'        :RabbitListener 실패 메시지 전송;
+'    endif
+'repeat while (data available?)
+'stop
+'@enduml
+
+
 /'일단 보고드릴 버전'/
-@startuml
-start
-:Queue에서 메시지 수신;
-if (@RabbitListener 수신) then (yes)
-    :@RabbitListener를 통해 메시지 수신;
-    if (로그 저장) then (yes)
-        :LogT.log 파일에 로그 저장;
-    else (no)
-        :로컬 저장소에 로그 저장;
-    endif
-else (no)
-    :RabbitListener 실패 메시지 전송;
-endif
-stop
-@enduml
+'@startuml
+'start
+':Queue에서 메시지 수신;
+'if (@RabbitListener 수신) then (yes)
+'    :@RabbitListener를 통해 메시지 수신;
+'    if (로그 저장) then (yes)
+'        :LogT.log 파일에 로그 저장;
+'    else (no)
+'        :로컬 저장소에 로그 저장;
+'    endif
+'else (no)
+'    :RabbitListener 실패 메시지 전송;
+'endif
+'stop
+'@enduml
 
 
 
