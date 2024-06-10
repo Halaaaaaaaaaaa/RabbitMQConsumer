@@ -13,7 +13,7 @@ spring:
 
 logging:
   level:
-    root: debug
+    root: DEBUG
   config: file:/home/heysh/rabbitmq/CONSUMER/config/logback-spring.xml
   file:
     path: /home/heysh/rabbitmq/CONSUMER/log
