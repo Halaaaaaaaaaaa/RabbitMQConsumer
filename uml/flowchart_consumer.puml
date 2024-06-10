@@ -1,0 +1,127 @@
+/'초안'/
+'@startuml
+'start
+'if (메시지 수신) then (yes)
+'    :Queue에서 메시지 수신;
+'    if (@RabbitListener 수신) then (yes)
+'        :@RabbitListener를 통해 메시지 수신;
+'        if (로그 저장) then (yes)
+'            :LogT.log 파일에 로그 저장;
+'        else (no)
+'            stop
+'        endif
+'    else (no)
+'        stop
+'    endif
+'else (no)
+'    stop
+'endif
+'stop
+'
+'@enduml
+
+
+/'초안2'/
+'@startuml
+'start
+'if (메시지 수신 성공?) then (yes)
+'    :Queue에서 메시지 수신;
+'    if (@RabbitListener 수신 성공?) then (yes)
+'        :@RabbitListener를 통해 메시지 수신;
+'        if (로그 저장 성공?) then (yes)
+'            :LogT.log 파일에 로그 저장;
+'        else (로그 저장 실패)
+'            :로그 저장 실패 메시지 전송;
+'        endif
+'    else (RabbitListener 실패)
+'        :RabbitListener 실패 메시지 전송;
+'    endif
+'else (메시지 수신 실패)
+'    :메시지 수신 실패 메시지 전송;
+'endif
+'stop
+'@enduml
+
+
+/'retry 추가'/
+'@startuml
+'start
+'if (메시지 수신) then (yes)
+'    :Queue에서 메시지 수신;
+'    if (@RabbitListener 수신) then (yes)
+'        :@RabbitListener를 통해 메시지 수신;
+'        if (로그 저장) then (yes)
+'            :LogT.log 파일에 로그 저장;
+'        else (no)
+'            :로컬 저장소에 로그 저장;
+'        endif
+'    else (no)
+'        :RabbitListener 실패 메시지 전송;
+'    endif
+'else (no)
+'    if (재시도 횟수 초과) then (yes)
+'        :재시도 횟수 초과 메시지 전송;
+'    else (no)
+'        :재시도 횟수 증가;
+'        :재시도 시간 간격 설정;
+'        :메시지 재시도;
+'        if (재시도) then (yes)
+'            :성공 메시지 전송;
+'        endif
+'    endif
+'endif
+'stop
+'@enduml
+
+
+/'retry 5회 설정 ver'/
+'@startuml
+'start
+'if (메시지 수신) then (yes)
+'    :Queue에서 메시지 수신;
+'    if (@RabbitListener 수신) then (yes)
+'        :@RabbitListener를 통해 메시지 수신;
+'        if (로그 저장) then (yes)
+'            :LogT.log 파일에 로그 저장;
+'        else (no)
+'            :로컬 저장소에 로그 저장;
+'        endif
+'    else (no)
+'        :RabbitListener 실패 메시지 전송;
+'    endif
+'else (no)
+'    if (재시도 횟수 초과) then (yes)
+'        :재시도 횟수 초과 메시지 전송;
+'    else (no)
+'        :재시도 횟수 증가;
+'        :재시도 시간 간격 설정;
+'        :메시지 재시도;
+'        if (재시도 성공) then (yes)
+'            :성공 메시지 전송;
+'        endif
+'    endif
+'endif
+'stop
+'@enduml
+
+
+/'일단 보고드릴 버전'/
+@startuml
+start
+:Queue에서 메시지 수신;
+if (@RabbitListener 수신) then (yes)
+    :@RabbitListener를 통해 메시지 수신;
+    if (로그 저장) then (yes)
+        :LogT.log 파일에 로그 저장;
+    else (no)
+        :로컬 저장소에 로그 저장;
+    endif
+else (no)
+    :RabbitListener 실패 메시지 전송;
+endif
+stop
+@enduml
+
+
+
+

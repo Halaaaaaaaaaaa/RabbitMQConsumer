@@ -43,7 +43,7 @@ public class ConsumerConfig {
 
     @Bean
     Queue queue() {
-        return new Queue(QUEUE_NAME, true);
+        return new Queue(QUEUE_NAME, true, false, false);
     }
 
     @Value("${spring.rabbitmq.routing.name}")
